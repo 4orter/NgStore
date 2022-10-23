@@ -24,7 +24,7 @@ After running the `ng build` command, the build artifacts will be stored in the 
 ### TODO
 - Add better form validation
 - Add loading screen (for data fetching state)
-- Add animation for toast notifications
+- Add animation for toast notification
 
 <br>
 
