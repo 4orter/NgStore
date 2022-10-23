@@ -21,6 +21,11 @@ To build the project, use the following command:
 
 After running the `ng build` command, the build artifacts will be stored in the `dist/` directory.
 
+### TODO
+- Add better form validation
+- Add loading screen (for data fetching state)
+- Add animation for toast notifications
+
 <br>
 
 ## Contributors
