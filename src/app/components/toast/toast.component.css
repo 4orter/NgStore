@@ -1,0 +1,23 @@
+.notification {
+    display: flex;
+    flex-direction: column;
+
+    background-color: #eee;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.notification.success {
+    background-color: green;
+}
+
+.notification-title {
+    padding: 10px 15px 5px;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.notification-message {
+    color: #FFFFFF;
+    padding: 5px 15px 10px;
+}

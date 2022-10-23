@@ -1,0 +1,14 @@
+<h1>Shopping Cart</h1>
+<section *ngIf="cartItems.length; else elseBlock">
+    <app-cart-left
+        [orderProducts]="cartItems"
+        (removeClicked)="removeItem($event)"
+        (quantityChanged)="updateItemQuantity($event)"></app-cart-left>
+    <app-cart-right
+        [orderTotal]="cartTotal$"
+        (formSubmit)="handleCartRightFormSubmit($event)"
+    ></app-cart-right>
+</section>
+<ng-template #elseBlock>
+    <h2 class="empty-message">Your Cart is Empty 🛒</h2>
+</ng-template>
