@@ -8,6 +8,6 @@
         name="quantity"
         [(ngModel)]="quantity"
         maxlength="3"
-        (blur)="handleQuantityChange($event)"
+        (change)="handleQuantityChange($event)"
         (keypress)="sanitizeInput($event)">
 </form>
