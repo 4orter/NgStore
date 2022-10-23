@@ -36,7 +36,4 @@ export class CartRightComponent implements OnInit {
         };
         this.formSubmit.emit(customer);
     }
-
-    updateFormValidity(): void {
-    }
 }

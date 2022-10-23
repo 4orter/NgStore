@@ -18,12 +18,17 @@ export class CartLeftFormComponent implements OnInit {
     }
 
     sanitizeInput(e: any): void {
-        if (!e.key || isNaN(+e.key) || e.target.value > 99) {
+        if (!e.key || isNaN(+e.key) || (+e.target.value === 0 && e.key === '0') || +e.target.value > 99) {
             e.preventDefault();
         }
     }
 
-    handleQuantityChange() {
+    handleQuantityChange(e: any): void {
+        if (!this.quantity) {
+            e.target.value = 1;
+            this.quantity = 1;
+        }
+
         const payload = {
             product: this.orderProduct.product,
             quantity: this.quantity

@@ -22,7 +22,6 @@ export class CartLeftComponent implements OnInit {
     }
 
     handleQuantityChange(payload: {product: Product, quantity: number}): void {
-        console.log(payload);
         this.quantityChange.emit(payload);
     }
 }
