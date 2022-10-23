@@ -1,5 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import OrderProduct from 'src/app/models/OrderProduct';
+import Product from 'src/app/models/Product';
 
 @Component({
     selector: 'app-cart-left',
@@ -8,20 +9,20 @@ import OrderProduct from 'src/app/models/OrderProduct';
 })
 export class CartLeftComponent implements OnInit {
     @Input() orderProducts: OrderProduct[] = [];
-    @Output() quantityChanged: EventEmitter<any> = new EventEmitter();
-    @Output() removeClicked: EventEmitter<any> = new EventEmitter();
+    @Output() quantityChange: EventEmitter<any> = new EventEmitter();
+    @Output() removeClick: EventEmitter<any> = new EventEmitter();
 
     constructor() { }
 
     ngOnInit(): void {
     }
 
-    handleRemoveClick(productId: number): void {
-        this.removeClicked.emit(productId);
+    handleRemoveClick(product: Product): void {
+        this.removeClick.emit(product);
     }
 
-    handleQuantityChange(payload: {id: number, quantity: number}): void {
+    handleQuantityChange(payload: {product: Product, quantity: number}): void {
         console.log(payload);
-        this.quantityChanged.emit(payload);
+        this.quantityChange.emit(payload);
     }
 }

@@ -1,9 +1,10 @@
+<app-toaster></app-toaster>
 <h1>Shopping Cart</h1>
 <section *ngIf="cartItems.length; else elseBlock">
     <app-cart-left
         [orderProducts]="cartItems"
-        (removeClicked)="removeItem($event)"
-        (quantityChanged)="updateItemQuantity($event)"></app-cart-left>
+        (removeClick)="handleRemoveClick($event)"
+        (quantityChange)="handleCartLeftQuantityChange($event)"></app-cart-left>
     <app-cart-right
         [orderTotal]="cartTotal$"
         (formSubmit)="handleCartRightFormSubmit($event)"

@@ -36,21 +36,19 @@ export class ProductDetailComponent implements OnInit {
         }
     }
 
-    addToCart(orderProduct: OrderProduct): void {
+    handleAddToCartClick(orderProduct: OrderProduct): void {
         this.cartService.addItemToCart(orderProduct.product, orderProduct.quantity);
-
         let reference = orderProduct.product.name;
         if (reference.charAt(reference.length - 1) !== 's' && orderProduct.quantity > 1) {
             reference += 's';
         }
-
         this.notificationService.showSuccessNotification(
-            'Item Added!',
+            'Item Added 🛍',
             `You added ${orderProduct.quantity} ${reference} to your cart`
         );
     }
 
-    buyItNow(orderProduct: OrderProduct): void {
+    handleBuyItNowClick(orderProduct: OrderProduct): void {
         this.cartService.removeAllItems();
         this.cartService.addItemToCart(orderProduct.product, orderProduct.quantity);
         this.router.navigate(['/cart']);

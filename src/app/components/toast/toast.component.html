@@ -1,7 +1,8 @@
 <div
     class="notification"
     [class.success]="notification.category === 0"
-    [class.failure]="notification.category === 1"
+    [class.update]="notification.category === 1"
+    [class.danger]="notification.category === 2"
 >
     <div class="notification-title">{{notification.title}}</div>
     <div class="notification-message">{{notification.message}}</div>

@@ -1,4 +1,5 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import CheckoutInformation from 'src/app/models/CheckoutInformation';
 
 @Component({
     selector: 'app-cart-right',
@@ -6,29 +7,36 @@ import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
     styleUrls: ['./cart-right.component.css']
 })
 export class CartRightComponent implements OnInit {
-    firstName: string = '';
-    lastName: string = '';
-    streetAddress: string = '';
-    addressUnit: string = '';
-    city: string = '';
-    state: string = ''
-    zipCode: string = '';
-    ccNumber: string = '';
-    ccCode: string = '';
-    ccDate: string = '';
+    formControls: CheckoutInformation;
     @Input() orderTotal!: number;
     @Output() formSubmit: EventEmitter<any> = new EventEmitter();
 
-    constructor() { }
+    constructor() {
+        this.formControls = {
+            firstName: '',
+            lastName: '',
+            streetAddress: '',
+            addressUnit: '',
+            city: '',
+            state: '',
+            zipCode: '',
+            ccNumber: '',
+            ccCode: '',
+            ccDate: ''
+        };
+    }
 
     ngOnInit(): void {
     }
 
     submitForm() {
         const customer = {
-            firstName: this.firstName,
-            lastName: this.lastName
+            firstName: this.formControls.firstName,
+            lastName: this.formControls.lastName
         };
         this.formSubmit.emit(customer);
+    }
+
+    updateFormValidity(): void {
     }
 }

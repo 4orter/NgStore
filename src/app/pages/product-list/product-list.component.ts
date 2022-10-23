@@ -25,10 +25,10 @@ export class ProductListComponent implements OnInit {
         });
     }
 
-    addToCart(product: Product): void {
+    handleAddToCartClick(product: Product): void {
         this.cartService.addItemToCart(product, 1);
         this.notificationService.showSuccessNotification(
-            'Item Added!',
+            'Item Added! 🛍',
             `You added 1 ${product.name} to your cart`
         );
     }

@@ -25,7 +25,7 @@ export class CartLeftFormComponent implements OnInit {
 
     handleQuantityChange() {
         const payload = {
-            id: this.orderProduct.product.id,
+            product: this.orderProduct.product,
             quantity: this.quantity
         }
         this.quantityChange.emit(payload);

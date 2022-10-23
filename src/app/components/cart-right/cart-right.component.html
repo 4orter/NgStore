@@ -3,36 +3,51 @@
     <div class="form-contact">
         <h4>Personal Information</h4>
         <div class="input-group">
-            <label>
-                <small>First Name</small>
-                <input type="text" name="firstName" placeholder="Happy" [(ngModel)]="firstName" required>
-            </label>
-            <label>
-                <small>Last Name</small>
-                <input type="text" name="lastName" placeholder="Buyer" [(ngModel)]="lastName" required>
+            <div>
+                <small *ngIf="firstName.touched && firstName.invalid" class="error-message">Please use valid first name</small>
+                <label [class.invalid]="firstName.touched && firstName.invalid">
+                    <small>First Name</small>
+                    <input type="text" name="firstName" placeholder="Happy" [(ngModel)]="formControls.firstName" #firstName="ngModel" [ngModelOptions]="{updateOn: 'blur'}" required maxlength="16" pattern="\b([A-Za-z][-,a-z. ']+[ ]*)+">
+                </label>
+            </div>
+            <div>
+                <small *ngIf="lastName.touched && lastName.invalid" class="error-message">Please use valid last name</small>
+                <label [class.invalid]="lastName.touched && lastName.invalid">
+                    <small>Last Name</small>
+                    <input type="text" name="lastName" placeholder="Buyer" [(ngModel)]="formControls.lastName" #lastName="ngModel" [ngModelOptions]="{updateOn: 'blur'}" required maxlength="16" pattern="\b([A-Za-z][-,a-z. ']+[ ]*)+">
+                </label>
+            </div>
+        </div>
+        <div>
+            <small *ngIf="streetAddress.touched && streetAddress.invalid" class="error-message">Street address is invalid</small>
+            <label [class.invalid]="streetAddress.touched && streetAddress.invalid">
+                <small>Street Address</small>
+                <input type="text" name="streetAddress" placeholder="1234 Ng Road" [(ngModel)]="formControls.streetAddress" #streetAddress="ngModel" [ngModelOptions]="{updateOn: 'blur'}" required minlength="2" maxlength="50" pattern="^\s*\S+(?:\s+\S+){2}">
             </label>
         </div>
-        <label>
-            <small>Street Address</small>
-            <input type="text" name="streetAddress" placeholder="1234 Ng Road" [(ngModel)]="streetAddress" required>
-        </label>
-        <label>
-            <small>Apartment, Suite, Unit, etc. (optional)</small>
-            <input type="text" name="addressUnit" placeholder="Unit 4200" [(ngModel)]="addressUnit">
-        </label>
-        <label>
-            <small>City</small>
-            <input type="text" name="city" placeholder="San Francisco" [(ngModel)]="city"  required>
-        </label>
+        <div>
+            <small *ngIf="addressUnit.touched && addressUnit.invalid" class="error-message">Address unit is invalid</small>
+            <label [class.invalid]="addressUnit.touched && addressUnit.invalid">
+                <small>Apartment, Suite, Unit, etc. (optional)</small>
+                <input type="text" name="addressUnit" placeholder="Unit 4200" [(ngModel)]="formControls.addressUnit" #addressUnit="ngModel" maxlength="16">
+            </label>
+        </div>
+        <div>
+            <small *ngIf="city.touched && city.invalid" class="error-message">City is invalid</small>
+            <label [class.invalid]="city.touched && city.invalid">
+                <small>City</small>
+                <input type="text" name="city" placeholder="San Francisco" [(ngModel)]="formControls.city" #city="ngModel" [ngModelOptions]="{updateOn: 'blur'}" required minlength="2" maxlength="16" pattern="^[a-zA-Z][a-zA-Z\s-]+[a-zA-Z]$">
+            </label>
+        </div>
         <div class="input-group">
             <label>
                 <small>State</small>
-                <select>
+                <select >
                     <option value="AL">Alabama</option>
                     <option value="AK">Alaska</option>
                     <option value="AZ">Arizona</option>
                     <option value="AR">Arkansas</option>
-                    <option value="CA">California</option>
+                    <option value="CA" selected>California</option>
                     <option value="CO">Colorado</option>
                     <option value="CT">Connecticut</option>
                     <option value="DE">Delaware</option>
@@ -81,27 +96,39 @@
                     <option value="WY">Wyoming</option>
                 </select>
             </label>
-            <label>
-                <small>Zip Code</small>
-                <input type="text" name="zipCode" placeholder="12345" [(ngModel)]="zipCode" required>
-            </label>
+            <div>
+                <small *ngIf="zipCode.touched && zipCode.invalid" class="error-message">Zip code is invalid</small>
+                <label [class.invalid]="zipCode.touched && zipCode.invalid">
+                    <small>Zip Code</small>
+                    <input type="text" name="zipCode" placeholder="12345" [(ngModel)]="formControls.zipCode" #zipCode="ngModel" [ngModelOptions]="{updateOn: 'blur'}" required maxlength="5" pattern="^([0-9]{5})$">
+                </label>
+            </div>
         </div>
     </div>
     <div class="form-payment">
         <h4>Payment Details</h4>
-        <label>
-            <small>Credit Card Number</small>
-            <input type="text" name="ccNumber" placeholder="5555-5555-5555-5555" [(ngModel)]="ccNumber" required>
-        </label>
+        <div>
+            <small *ngIf="ccNumber.touched && ccNumber.invalid" class="error-message">Credit card number is invalid</small>
+            <label [class.invalid]="ccNumber.touched && ccNumber.invalid">
+                <small>Credit Card Number</small>
+                <input type="text" name="ccNumber" placeholder="5555-5555-5555-5555" [(ngModel)]="formControls.ccNumber" #ccNumber="ngModel" [ngModelOptions]="{updateOn: 'blur'}" required maxlength="19" pattern="^([0-9]{4}[-.]?[0-9]{4}[-.]?[0-9]{4}[-.]?[0-9]{4})$">
+            </label>
+        </div>
         <div class="input-group">
-            <label>
-                <small>Security Code</small>
-                <input type="text" name="ccCode" placeholder="***" [(ngModel)]="ccCode" required>
-            </label>
-            <label>
-                <small>Expiration Date</small>
-                <input type="text" name="ccDate" placeholder="MM / YY" [(ngModel)]="ccDate" required>
-            </label>
+            <div>
+                <small *ngIf="ccCode.touched && ccCode.invalid" class="error-message">Security code is invalid</small>
+                <label [class.invalid]="ccCode.touched && ccCode.invalid">
+                    <small>Security Code</small>
+                    <input type="text" name="ccCode" placeholder="***" [(ngModel)]="formControls.ccCode" #ccCode="ngModel" [ngModelOptions]="{updateOn: 'blur'}" required maxlength="3" pattern="^([0-9]{3})$">
+                </label>
+            </div>
+            <div>
+                <small *ngIf="ccDate.touched && ccDate.invalid" class="error-message">Expiration date is invalid</small>
+                <label [class.invalid]="ccDate.touched && ccDate.invalid">
+                    <small>Expiration Date</small>
+                    <input type="text" name="ccDate" placeholder="MM/YY" [(ngModel)]="formControls.ccDate" #ccDate="ngModel" [ngModelOptions]="{updateOn: 'blur'}" required maxlength="5" pattern="^(0[1-9]|1[0-2])\/?([0-9]{2})$">
+                </label>
+            </div>
         </div>
     </div>
     <div class="form-total">

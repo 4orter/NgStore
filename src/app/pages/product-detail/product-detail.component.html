@@ -4,7 +4,7 @@
     <app-product-left [imageUrl]="product$.url"></app-product-left>
     <app-product-right
         [product]="product$"
-        (addToCartClick)="addToCart($event)"
-        (buyNowClick)="buyItNow($event)"
+        (addToCartClick)="handleAddToCartClick($event)"
+        (buyNowClick)="handleBuyItNowClick($event)"
     ></app-product-right>
 </section>

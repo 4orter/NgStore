@@ -4,6 +4,8 @@ import OrderProduct from 'src/app/models/OrderProduct';
 import {CartService} from 'src/app/services/cart.service';
 import {OrderService} from 'src/app/services/order.service';
 import {Router} from '@angular/router';
+import {NotificationService} from 'src/app/services/notification.service';
+import Product from 'src/app/models/Product';
 
 @Component({
     selector: 'app-shopping-cart',
@@ -18,6 +20,7 @@ export class ShoppingCartComponent implements OnInit {
     constructor(
         private cartService: CartService,
         private orderService: OrderService,
+        private notificationService: NotificationService,
         private router: Router
     ) { }
 
@@ -29,13 +32,21 @@ export class ShoppingCartComponent implements OnInit {
         this.cartService.updateTotal();
     }
 
-    removeItem(productId: number): void {
-        this.cartService.removeItem(productId);
+    handleRemoveClick(product: Product): void {
+        this.cartService.removeItem(product.id);
         this.cartItems = this.cartService.getCartItems();
+        this.notificationService.showDangerNotification(
+            'Item Removed! 🗑',
+            `${product.name} removed from cart`
+        );
     }
 
-    updateItemQuantity(payload: {id: number, quantity: number}): void {
-        this.cartService.updateQuantity(payload.id, payload.quantity);
+    handleCartLeftQuantityChange(payload: {product: Product, quantity: number}): void {
+        this.cartService.updateQuantity(payload.product.id, payload.quantity);
+        this.notificationService.showUpdateNotification(
+            'Item Updated! 🔄',
+            `${payload.product.name} quantity updated to ${payload.quantity}`
+        );
     }
 
     handleCartRightFormSubmit(customer: {firstName: string, lastName: string}): void {

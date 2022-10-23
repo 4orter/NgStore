@@ -22,9 +22,17 @@ export class NotificationService {
         });
     }
 
-    showErrorNotification(title: string, message: string): void {
+    showUpdateNotification(title: string, message: string): void {
         this._notification.next({
-            category: StoreNotificationCategory.ERROR,
+            category: StoreNotificationCategory.UPDATE,
+            title,
+            message
+        });
+    }
+
+    showDangerNotification(title: string, message: string): void {
+        this._notification.next({
+            category: StoreNotificationCategory.DANGER,
             title,
             message
         });
