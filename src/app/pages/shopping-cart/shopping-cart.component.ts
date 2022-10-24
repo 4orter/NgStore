@@ -12,7 +12,7 @@ import Product from 'src/app/models/Product';
     templateUrl: './shopping-cart.component.html',
     styleUrls: ['./shopping-cart.component.css']
 })
-export class ShoppingCartComponent implements OnInit {
+export class ShoppingCartComponent implements OnInit, OnDestroy {
     cartItems: OrderProduct[] = [];
     cartTotal$: number = 0;
     totalSubscription!: Subscription;
